@@ -18,65 +18,57 @@
     });
  //Creating functions to build demographics table and Charts
 
-    function optionChanged(sampleValue) {
+    function optionChanged(ID) {
         //console.log(sampleValue);
-        metadataTable(sampleValue);
-        buildBar(sampleValue);
+        metadataTable(ID);
+        buildBar(ID);
     }
 
 //Creating mFunctionfor metadata demographics table 
 
-    function metadataTable(samples) {
+    function metadataTable(ID) {
         d3.json("resources/samples.json").then((data) => {
             var meta = data.metadata;
-            var sampleArray = meta.filter(dataObj => dataObj.id == samples);
+            var sampleArray = meta.filter(dataObj => dataObj.id == ID);
             var callback = sampleArray[0];
             var PANEL = d3.select("#sample-metadata");
             PANEL.html("");
-            var demoInf = Object.entries(callback)
-            demoInf.forEach((item) => {
+            var demographics = Object.entries(callback)
+            demographics.forEach((item) => {
             PANEL.append("h6").text(item[0]+': '+item[1]);
         });
       });
     }
-
-//Creating function for barchart data
-    function buildBar(samples) {
+        // Create function Barchart data
+    function buildBar(ID) {
         d3.json("resources/samples.json").then((data) => {
             var meta = data.metadata;
-            var sampleArray = meta.filter(dataObj => dataObj.id == samples);
+            var sampleArray = meta.filter(dataObj => dataObj.id == ID);
             var callbacks = sampleArray[0];
             var sampleValues = callbacks.sample_values;
             var sampleIDs = callbacks.otu_ids;
             var sampleLabels = callbacks.otu_labels;
-        });
-    };
-
 
         //build barchart
-
-    function buildChart(samples) {
-        var bar = d3.select("#bar");   
-        bar.html("")
-        var barchart = [{
-            x: samples.slice(0,10).reverse(),
-            y: samples.map(OTU => "OTU " + OTU).reverse(),
-            text: samples.otu_labels.slice(0,10),
+        var BAR = d3.select("#bar");
+        BAR.html("");
+        var barChart = [{
+            x: sampleValues.slice(0,10).reverse(),
+            y: sampleIDs.map(OTU => "OTU " + OTU).reverse(),
+            text: sampleLabels.otu_labels.slice(0,10),
             type:"bar" ,
             orientation:"h"
         }];
-     };
-
-       //Layout for barchart
+        Plotly.newPlot("bar" , barChart);
+    });
+        //Begin Layout
+        
         var layout = {
             title: 'Top 10 Results Selected Test Subject',
             orientation:'h',
             xaxis:{title: 'Sample Value'},
             yaxis:{autotick:false, type:'Category', title: 'OTU ID'}
             }
-            Plotly.newPlot("bar" , barchart);
+         
         ;
-       
-       
-       
-        //BubbleChart
+    }

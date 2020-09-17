@@ -91,29 +91,17 @@
             text:sampleLabels,
             mode: "markers",
             marker: {
-            color:['#9ad1ff',
-            'rgb(0,191,255)',
-            'rgb(255,182,193)',
-            'rgb(188,143,143)',
-            'rgb(147,112,219)',
-            'rgb(220,20,60)',
-            'rgb(202,209,95)',
-            'rgb(210,206,145)',
-            'rgb(255,160,122)',
-            'rgb(0,255,127),',
-            'rgb(147,112,219),',
-            'rgb(65,105,225)'],            
-            opacity: [1, 0.8, 0.6, 0.4],
-            size: sampleValues,
-                
+                size: sampleValues,
+                color: sampleIDs,
+                colorscale: "Earth",
+             
             }
         };
         var bubbleLayout = {
             xaxis:{title: 'OTU ID'},
             
-                };    
-
-          
+                };         
 
             Plotly.newPlot("bubble" , [trace], bubbleLayout);
     })};
+//end of required homework

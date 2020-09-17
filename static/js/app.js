@@ -1,13 +1,12 @@
 
-//Readind in data and create horizonal dropdown
- 
+//Readind in data and create horizonal dropdown 
 
     d3.json("resources/samples.json").then((data) => {
-        //examine data file
+//examine data file
         console.log(data);
-
         var selection = d3.select("#selDataset")
 
+//populates selection based on number selected
         var sampleName = data.names
         sampleName.forEach((name) => {
             selection
@@ -17,15 +16,14 @@
         });
     });
  //Creating functions to build demographics table and Charts
-
     function optionChanged(ID) {
         //console.log(sampleValue);
         metadataTable(ID);
         buildBar(ID);
+        bubbleChart(ID);
     }
 
 //Creating mFunctionfor metadata demographics table 
-
     function metadataTable(ID) {
         d3.json("resources/samples.json").then((data) => {
             var meta = data.metadata;
@@ -39,36 +37,83 @@
         });
       });
     }
-        // Create function Barchart data
+
+// Create function Barchart and call data
     function buildBar(ID) {
         d3.json("resources/samples.json").then((data) => {
-            var meta = data.metadata;
+            var meta = data.samples;
             var sampleArray = meta.filter(dataObj => dataObj.id == ID);
             var callbacks = sampleArray[0];
             var sampleValues = callbacks.sample_values;
             var sampleIDs = callbacks.otu_ids;
             var sampleLabels = callbacks.otu_labels;
-
-        //build barchart
+        console.log(callbacks)
+//build barchart
         var BAR = d3.select("#bar");
         BAR.html("");
         var barChart = [{
             x: sampleValues.slice(0,10).reverse(),
             y: sampleIDs.map(OTU => "OTU " + OTU).reverse(),
-            text: sampleLabels.otu_labels.slice(0,10),
+            text: sampleLabels.slice(0,10),
             type:"bar" ,
-            orientation:"h"
+            orientation:"h",
+            marker: {color: "#9ad1ff"}
         }];
-        Plotly.newPlot("bar" , barChart);
-    });
-        //Begin Layout
-        
+//Begin Layout for barchart
         var layout = {
             title: 'Top 10 Results Selected Test Subject',
             orientation:'h',
             xaxis:{title: 'Sample Value'},
             yaxis:{autotick:false, type:'Category', title: 'OTU ID'}
-            }
+            };
          
-        ;
-    }
+           Plotly.newPlot("bar" , barChart,layout);
+
+    })};
+   
+       
+// Create function Bubble Chart and call data
+    function bubbleChart(ID) {
+        d3.json("resources/samples.json").then((data) => {
+            var meta = data.samples;
+            var sampleArray = meta.filter(dataObj => dataObj.id == ID);
+            var callbacks = sampleArray[0];
+            var sampleValues = callbacks.sample_values;
+            var sampleIDs = callbacks.otu_ids;
+            var sampleLabels = callbacks.otu_labels;
+       
+//Build Bubble chart     
+       var bubble = d3.select("#bubble");
+        bubble.html("")
+        var trace = {
+            x:sampleIDs,
+            y:sampleValues,
+            text:sampleLabels,
+            mode: "markers",
+            marker: {
+            color:['#9ad1ff',
+            'rgb(0,191,255)',
+            'rgb(255,182,193)',
+            'rgb(188,143,143)',
+            'rgb(147,112,219)',
+            'rgb(220,20,60)',
+            'rgb(202,209,95)',
+            'rgb(210,206,145)',
+            'rgb(255,160,122)',
+            'rgb(0,255,127),',
+            'rgb(147,112,219),',
+            'rgb(65,105,225)'],            
+            opacity: [1, 0.8, 0.6, 0.4],
+            size: sampleValues,
+                
+            }
+        };
+        var bubbleLayout = {
+            xaxis:{title: 'OTU ID'},
+            
+                };    
+
+          
+
+            Plotly.newPlot("bubble" , [trace], bubbleLayout);
+    })};

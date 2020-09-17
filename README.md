@@ -6,7 +6,7 @@ By Dawn Salisbury  September 21, 2020
 <img img align="center" src="https://github.com/dsalisbury1141/Belly-Button-Biodiversity/blob/master/Images/dashboard2.PNG" width="600">
 
 
-## The Nitty Gritty Details About Belly Button bio
+## The Nitty Gritty Details About Belly Button Biodiversity
 In this assignment, I built an interactive dashboard to explore the "Belly Button Biodiversity dataset". The dataset reveals that a small handful of microbial species, also called operational taxonomic units, or OTUs, these microbes were present in more than 70% of people, while the rest were relatively rare.
 
 ## More Creepy Details.. 

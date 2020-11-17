@@ -1,5 +1,5 @@
 ## 15-Interactive-Visualizations-and-Dashboards 
-https://dsalisbury1141.github.io/Belly-Button-Biodiversity/
+https://dsalisbury1141.github.io/Biodiversity-Dashboard/
 
 By Dawn Salisbury  September 21, 2020
 

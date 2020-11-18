@@ -1,7 +1,6 @@
 ## 15-Interactive-Visualizations-and-Dashboards 
 https://dsalisbury1141.github.io/Biodiversity-Dashboard/
-
-By Dawn Salisbury  September 21, 2020
+Click on the link above then select a sample number then submit to reveal the details. 
 
 ## Welcome to My Belly-Button-Biodiversity 
 <img img align="center" src="https://github.com/dsalisbury1141/Belly-Button-Biodiversity/blob/master/Images/dashboard2.PNG" width="600">
@@ -15,5 +14,9 @@ In this project we learned that belly buttons are indeed a jungle of microbial d
 
 <img src="https://github.com/dsalisbury1141/Belly-Button-Biodiversity/blob/master/Images/meanGerms.jpg" width="500">
 
+
+How to run my code:
+	1. Open link above to run deployed site
+	2. Download my repository and run Index page on local host
 
 

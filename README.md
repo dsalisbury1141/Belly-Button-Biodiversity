@@ -16,7 +16,7 @@ In this project we learned that belly buttons are indeed a jungle of microbial d
 
 
 How to run my code:
-	1. Open link above to run deployed site
-	2. Download my repository and run Index page on local host
+1. Open link above to run deployed site
+2. Download my repository and run Index page on local host
 
 
